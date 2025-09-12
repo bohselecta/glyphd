@@ -1,0 +1,83 @@
+# =========================
+# CURSOR RULES FOR THIS REPO
+# =========================
+# Goal: Ship a clean, minimal Next.js (App Router) app with TypeScript, Tailwind, ESLint,
+# that (1) typechecks, (2) lints, (3) builds locally, and (4) deploys on Vercel with zero errors.
+
+# ---------- GLOBAL BEHAVIOR ----------
+- Always prefer minimal, idiomatic Next.js (App Router) patterns.
+- Keep TypeScript strict and fix errors at the source (do NOT “any” things away unless truly necessary).
+- Never add dependencies unless asked or clearly required to fix a compile/lint/build error.
+- Use Tailwind for styling; avoid custom CSS frameworks unless asked.
+- Every change that touches config must be validated by running:
+  1) `pnpm typecheck` or `npm run typecheck`
+  2) `pnpm lint` or `npm run lint`
+  3) `pnpm build` or `npm run build`
+- Do NOT leave TODOs that would break typechecking/linting/build.
+
+# ---------- PROJECT CONVENTIONS ----------
+- App Router structure:
+  /app
+    /page.tsx          -> minimal, working home route
+    /layout.tsx        -> sets global html/body and fonts
+    /globals.css       -> Tailwind entry
+  /public              -> static assets
+
+- Absolute imports alias:
+  - Use "@/..." via tsconfig baseUrl+paths (configured below).
+  - Do NOT invent additional aliases.
+
+- Client vs Server components:
+  - Default to Server Components.
+  - Only add `"use client"` when using state, effects, or browser-only APIs.
+
+# ---------- TYPESCRIPT ----------
+- Strict mode stays ON. If a type mismatch occurs, fix it—do not cast to `any`.
+- No ambient globals; prefer explicit imports.
+- For React components, prefer explicit prop types (interfaces or type aliases).
+
+# ---------- ESLINT / PRETTIER ----------
+- Respect ESLint `next/core-web-vitals`.
+- Fix all lint issues or justify a targeted rule disable for a single line only.
+- Prettier formatting is applied (use the project config if present).
+
+# ---------- TAILWIND ----------
+- Use semantic Tailwind classes; do not create dead utility classes.
+- Keep `globals.css` minimal: Tailwind layers + variables if needed.
+
+# ---------- DEFINITION OF DONE (DOD) ----------
+A task or PR is DONE only if:
+- `typecheck` passes (no TS errors).
+- `lint` passes (no ESLint errors).
+- `build` completes with zero warnings/errors.
+- Running `pnpm dev` renders `/` without runtime errors.
+- New files have minimal tests or are trivially testable (for now we accept "manual check" for UI skeleton).
+
+# ---------- COMMON COMMANDS ----------
+When you (Cursor) scaffold or modify code, also propose the exact commands to validate:
+
+- Install:
+  - `pnpm i` (preferred) or `npm i`
+- Dev: `pnpm dev` (or `npm run dev`)
+- Typecheck: `pnpm typecheck`
+- Lint: `pnpm lint --fix`
+- Build: `pnpm build`
+
+# ---------- DON’TS ----------
+- Don’t introduce `eslint-disable` at file scope.
+- Don’t add experimental Next features unless requested.
+- Don’t ship placeholder code that fails typecheck or lint.
+- Don’t add server-only code to client components (or vice versa).
+
+# ---------- VERCE L READY ----------
+Before declaring “ready to deploy”:
+- Ensure `package.json` has `"build": "next build"` and Node engines >= 18.18 or 20.x.
+- No unresolved environment variables are required for the basic build.
+- No `process.env.*` access at module top level in client components.
+
+# ---------- CHECKLIST (RUN EVERY TIME) ----------
+[ ] `pnpm typecheck` ok
+[ ] `pnpm lint` ok
+[ ] `pnpm build` ok
+[ ] Home page renders locally at http://localhost:3000
+[ ] Changes are minimal and documented in PR/commit
