@@ -1,66 +1,73 @@
-GLYPHD Dashboard (Next.js App Router)
+GLYPHD — AI Project Memory Infrastructure
 
-Minimal, production-safe Next.js app (App Router + TypeScript + Tailwind + ESLint) that typechecks, lints, builds, and deploys cleanly on Vercel.
+GLYPHD is a minimal, production-safe Next.js app for organizing projects, goals, and AI-assisted workflows. It ships with App Router, TypeScript, Tailwind, and ESLint, and is set up for clean deploys on Vercel.
 
-Getting Started
+Features
 
-- Prereqs: Node 18.18+ or 20.x, pnpm or npm
-- Install: `pnpm i` (or `npm i`)
-- Dev: `pnpm dev` (or `npm run dev`) then open http://localhost:3000
+- Dashboard with project entry points (Projects, Memory Tree, Superintelligent, etc.)
+- Consistent UI kit (Tailwind) and icons (lucide-react)
+- Strong typing for core entities (projects, goals, files, health)
+- Vercel-ready: zero custom config required
 
-Quality Gates
+Tech Stack
 
-- Typecheck: `pnpm typecheck`
-- Lint: `pnpm lint` (add `--fix` to auto-fix where safe)
-- Build: `pnpm build`
+- Next.js (App Router), React 18, TypeScript
+- Tailwind CSS
+- ESLint (next/core-web-vitals)
 
-Deployment
+Getting Started (Local)
 
-- Vercel: This repo is compatible with Vercel zero-config builds.
-- If already linked in Vercel, pushes to `main` will trigger deploys.
-- Add environment variables (e.g., auth) in Vercel Project Settings â†’ Environment Variables. Do not commit secrets.
+- Requirements: Node 18.18+ or 20.x, pnpm (or npm)
+- Install: `pnpm i`
+- Run dev: `pnpm dev` ? open http://localhost:3000
+- Build: `pnpm build` and start: `pnpm start`
+
+Environment Variables (Simple)
+
+- Local only: put keys in `.env.local` (never commit this file)
+- If using Supabase later:
+  - `NEXT_PUBLIC_SUPABASE_URL=...`
+  - `NEXT_PUBLIC_SUPABASE_ANON_KEY=...`
+- If you add NextAuth later:
+  - `NEXTAUTH_URL=https://your-site.vercel.app`
+  - `NEXTAUTH_SECRET=...` (generate a long random string)
+
+On Vercel (no file upload)
+
+- Project ? Settings ? Environment Variables ? Add the same keys as separate entries
+- Add to Production and Preview
+- Only variables that start with `NEXT_PUBLIC_` are exposed to the browser
 
 Project Structure
 
-- `app/` â€“ App Router pages, layout, and global styles
-- `public/` â€“ Static assets (e.g., `/GLYPHDlogo.svg`)
-- `src/components/` â€“ Reusable components (header, sidebar, etc.)
-
-Environment Variables
-
-- Local: keep using your existing `.env.local` (itâ€™s ignored by git).
-- Pattern: `NEXT_PUBLIC_...` for client-safe vars; server-only secrets should NOT use `NEXT_PUBLIC`.
-
-Auth Setup (Short)
-
-- Keep your current `.env.local` as-is; add the following if using Supabase Auth:
-  - `NEXT_PUBLIC_SUPABASE_URL=...`
-  - `NEXT_PUBLIC_SUPABASE_ANON_KEY=...`
-  - Optional (server-only): `SUPABASE_SERVICE_ROLE=...` (never expose to client)
-- Vercel: add the same keys in Project â†’ Settings â†’ Environment Variables and redeploy.
-- If using NextAuth instead (or later):
-  - `NEXTAUTH_URL=https://your-domain` (or `http://localhost:3000` locally)
-  - `NEXTAUTH_SECRET=...`
-  - Add provider keys (e.g., `GITHUB_ID`, `GITHUB_SECRET`) as needed.
-
-Ignore/Exclusions
-
-- Node and Next.js artifacts are excluded via `.gitignore`:
-  - `node_modules/`
-  - `.next/`
-  - `.env*` (e.g., `.env.local`)
-  - `.vercel/`
-  - `.turbo/`
-  - `coverage/`, `dist/`
+- `app/` — routes (`/`, `/dashboard`, etc.), layout, and global styles
+- `public/` — static assets (e.g., `/GLYPHDlogo.svg`)
+- `src/components/` — UI components
+- `src/contexts/` — React context for project state
+- `src/services/` — integration adapters and helpers
+- `src/types/` — shared TypeScript types
 
 Scripts
 
-- `dev` â€“ Next.js dev server
-- `build` â€“ Production build
-- `start` â€“ Start the production server
-- `lint` â€“ ESLint (next/core-web-vitals)
-- `typecheck` â€“ TypeScript noEmit check
+- `dev` — start dev server
+- `build` — production build
+- `start` — run built app
+- `lint` — run ESLint
+- `typecheck` — run TypeScript without emitting
+
+Deployment
+
+- New Vercel Project ? Import this GitHub repo ? Framework: Next.js
+- Root directory: `/` (default)
+- Build command: auto (`next build`)
+- Output directory: auto (`.next`)
+- Push to `main` to trigger deploys
+
+Troubleshooting
+
+- White page with Vite assets (vite.svg) ? domain still serving an old project; reattach domain to this project and clear caches
+- ESLint failures on Vercel ? temporarily disabled during builds in `next.config.mjs` (re-enable after cleanup)
 
 License
 
-All rights reserved. See `LICENSE` for details.
+All rights reserved. See `LICENSE`.
