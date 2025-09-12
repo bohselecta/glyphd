@@ -2,10 +2,10 @@
 
 import React from 'react';
 import dynamic from 'next/dynamic';
-import { CanvasWriterAdapter } from '../../src/services/integrationAdapters.tsx';
+import { CanvasWriterAdapter } from '@/services/integrationAdapters';
 
 // Import the GLYPHD Canvas Writer component
-const GLYPHDCanvasWriter = dynamic(() => import('../../glyphd_canvas_writer.tsx'), {
+const GLYPHDCanvasWriter = dynamic(() => import('../../glyphd_canvas_writer'), {
   ssr: false,
   loading: () => (
     <div className="flex items-center justify-center min-h-screen">
