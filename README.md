@@ -28,9 +28,20 @@ Project Structure
 
 Environment Variables
 
-- Local: use `.env.local` (not committed). Example:
-  - `NEXT_PUBLIC_...` for vars used in client code
-  - `AUTH_...` and server-only vars with no NEXT_PUBLIC prefix
+- Local: keep using your existing `.env.local` (it’s ignored by git).
+- Pattern: `NEXT_PUBLIC_...` for client-safe vars; server-only secrets should NOT use `NEXT_PUBLIC`.
+
+Auth Setup (Short)
+
+- Keep your current `.env.local` as-is; add the following if using Supabase Auth:
+  - `NEXT_PUBLIC_SUPABASE_URL=...`
+  - `NEXT_PUBLIC_SUPABASE_ANON_KEY=...`
+  - Optional (server-only): `SUPABASE_SERVICE_ROLE=...` (never expose to client)
+- Vercel: add the same keys in Project → Settings → Environment Variables and redeploy.
+- If using NextAuth instead (or later):
+  - `NEXTAUTH_URL=https://your-domain` (or `http://localhost:3000` locally)
+  - `NEXTAUTH_SECRET=...`
+  - Add provider keys (e.g., `GITHUB_ID`, `GITHUB_SECRET`) as needed.
 
 Ignore/Exclusions
 
@@ -53,4 +64,3 @@ Scripts
 License
 
 All rights reserved. See `LICENSE` for details.
-
