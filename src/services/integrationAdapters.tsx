@@ -6,7 +6,7 @@
 
 'use client';
 
-import React, { useState, useEffect, useCallback } from 'react';
+import React, { useCallback } from 'react';
 import { useProject } from '../contexts/ProjectContext';
 import type { Project, ProjectGoal, ProjectFile, ProjectHealth } from '../types/project';
 
@@ -15,7 +15,7 @@ import type { Project, ProjectGoal, ProjectFile, ProjectHealth } from '../types/
 // =============================================================================
 
 interface CanvasWriterAdapterProps {
-  children: (props: CanvasWriterContextProps) => React.ReactNode;
+  children: (_props: CanvasWriterContextProps) => React.ReactNode;
 }
 
 interface CanvasWriterContextProps {
@@ -50,8 +50,7 @@ export const CanvasWriterAdapter: React.FC<CanvasWriterAdapterProps> = ({ childr
     goals,
     files,
     addFile,
-    updateFile,
-    checkPrerequisites
+    updateFile
   } = useProject();
 
   const generateEnhancedPrompt = useCallback((basePrompt: string): string => {
@@ -287,7 +286,7 @@ All code must advance at least one of these objectives.
 // =============================================================================
 
 interface FractalAuditorAdapterProps {
-  children: (props: FractalAuditorContextProps) => React.ReactNode;
+  children: (_props: FractalAuditorContextProps) => React.ReactNode;
 }
 
 interface FractalAuditorContextProps {
@@ -739,8 +738,8 @@ interface SuperintelligentContextProps {
 
   // AI Analysis
   analyzeProjectGoals: () => Promise<ProjectAnalysis>;
-  crystallizeGoal: (goalText: string) => Promise<CrystallizedGoal>;
-  generateGoalSuggestions: (parentGoal?: ProjectGoal) => Promise<GoalSuggestion[]>;
+  crystallizeGoal: (_goalText: string) => Promise<CrystallizedGoal>;
+  generateGoalSuggestions: (_parentGoal?: ProjectGoal) => Promise<GoalSuggestion[]>;
 
   // Pattern Recognition
   detectProjectPattern: () => ProjectPattern | null;

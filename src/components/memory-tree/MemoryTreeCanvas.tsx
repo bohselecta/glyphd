@@ -15,7 +15,7 @@ interface MemoryTreeProps {
 }
 
 export default function MemoryTreeCanvas({ currentProject, goals }: MemoryTreeProps) {
-  const [showCreateModal, setShowCreateModal] = useState(false);
+  const [_showCreateModal, setShowCreateModal] = useState(false);
 
   if (!currentProject) {
     return (

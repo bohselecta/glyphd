@@ -203,29 +203,29 @@ export interface ProjectContextType {
   error: string | null;
 
   // Actions
-  setCurrentProject: (project: Project | null) => void;
-  createProject: (data: Partial<Project>) => Promise<Project>;
-  updateProject: (id: string, data: Partial<Project>) => Promise<Project>;
-  deleteProject: (id: string) => Promise<void>;
+  setCurrentProject: (_project: Project | null) => void;
+  createProject: (_data: Partial<Project>) => Promise<Project>;
+  updateProject: (_id: string, _data: Partial<Project>) => Promise<Project>;
+  deleteProject: (_id: string) => Promise<void>;
   refreshProjects: () => Promise<void>;
 
   // Goals management
   goals: ProjectGoal[];
   goalTree: GoalTree[];
-  addGoal: (goal: Partial<ProjectGoal>) => Promise<ProjectGoal>;
-  updateGoal: (id: string, data: Partial<ProjectGoal>) => Promise<ProjectGoal>;
-  deleteGoal: (id: string) => Promise<void>;
+  addGoal: (_goal: Partial<ProjectGoal>) => Promise<ProjectGoal>;
+  updateGoal: (_id: string, _data: Partial<ProjectGoal>) => Promise<ProjectGoal>;
+  deleteGoal: (_id: string) => Promise<void>;
 
   // Files management
   files: ProjectFile[];
-  addFile: (file: Partial<ProjectFile>) => Promise<ProjectFile>;
-  updateFile: (id: string, data: Partial<ProjectFile>) => Promise<ProjectFile>;
-  deleteFile: (id: string) => Promise<void>;
+  addFile: (_file: Partial<ProjectFile>) => Promise<ProjectFile>;
+  updateFile: (_id: string, _data: Partial<ProjectFile>) => Promise<ProjectFile>;
+  deleteFile: (_id: string) => Promise<void>;
 
   // Health monitoring
   latestHealth: ProjectHealth | null;
   healthHistory: ProjectHealth[];
-  runHealthCheck: (type?: AuditType) => Promise<ProjectHealth>;
+  runHealthCheck: (_type?: AuditType) => Promise<ProjectHealth>;
 
   // Prerequisites
   prerequisites: PrerequisitesCheck | null;

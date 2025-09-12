@@ -1,7 +1,7 @@
 'use client';
 
 import React, { useState } from 'react';
-import { Code, Download, Upload, Play, Settings, FileText, Folder } from 'lucide-react';
+import { Code, Download, Play, Settings, FileText, Folder } from 'lucide-react';
 
 export default function CodeProjectPage() {
   // Mock data for now - replace with actual project context when Supabase is configured

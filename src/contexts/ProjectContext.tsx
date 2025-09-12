@@ -1,7 +1,6 @@
 'use client';
 
 import React, { createContext, useContext, useReducer, useEffect, useCallback } from 'react';
-import { createClient } from '@supabase/supabase-js';
 import type {
   Project,
   ProjectGoal,
@@ -21,10 +20,7 @@ import type {
 // SUPABASE CLIENT SETUP
 // =============================================================================
 
-const supabase = createClient(
-  process.env.NEXT_PUBLIC_SUPABASE_URL!,
-  process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!
-);
+// Supabase client intentionally omitted; add when backend is wired up
 
 // =============================================================================
 // CONTEXT STATE TYPE

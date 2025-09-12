@@ -1,17 +1,8 @@
 'use client';
 
-import React, { useState, useEffect, useCallback, useMemo } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import { useProject } from '../../contexts/ProjectContext';
-import {
-  Target, Zap, Settings, Eye, Download, Share2, Plus, Search, Filter,
-  BookOpen, Layers, Move, ZoomIn, ZoomOut, Menu, X, ChevronRight,
-  Calendar, CheckSquare, MoreVertical, Copy, Edit3, Trash2, Star,
-  Clock, Users, Tag, Archive, GitBranch, Shuffle, RotateCcw,
-  Maximize2, Minimize2, Play, Pause, Award, TrendingUp, Brain,
-  AlertTriangle, CheckCircle, XCircle, Lightbulb, Cpu, Database,
-  Network, Gauge, Bot, User, MessageSquare, Rocket, Shield,
-  Sparkles, Crown
-} from 'lucide-react';
+import { Target, Zap, Search, Brain, Gauge, Lightbulb, AlertTriangle, Network, Cpu, Shield } from 'lucide-react';
 
 // Enhanced goal patterns with industry intelligence
 const SUPERINTELLIGENT_PATTERNS = {
@@ -74,15 +65,13 @@ export default function SuperintelligentPlatform() {
   const {
     currentProject,
     goals,
-    addGoal,
-    latestHealth,
-    prerequisites
+    addGoal
   } = useProject();
 
   // Core State
   const [rootGoal, setRootGoal] = useState('');
   const [granularity, setGranularity] = useState(3);
-  const [tree, setTree] = useState(null);
+  // const [tree, setTree] = useState(null);
   const [isGenerating, setIsGenerating] = useState(false);
 
   // AI Integration State
@@ -93,7 +82,7 @@ export default function SuperintelligentPlatform() {
   // Intelligence System State
   const [interventionTriggers, setInterventionTriggers] = useState([]);
   const [crystallizationData, setCrystallizationData] = useState(null);
-  const [organizationalContext, setOrganizationalContext] = useState({
+  const [organizationalContext, _setOrganizationalContext] = useState({
     industry: 'SaaS',
     teamSize: 'medium',
     stage: 'growth',
@@ -101,18 +90,11 @@ export default function SuperintelligentPlatform() {
   });
 
   // UI State
-  const [focusedBranch, setFocusedBranch] = useState(null);
-  const [selectedNodes, setSelectedNodes] = useState(new Set());
-  const [searchTerm, setSearchTerm] = useState('');
-  const [isMobile, setIsMobile] = useState(false);
-
-  // Detect mobile
-  useEffect(() => {
-    const checkMobile = () => setIsMobile(window.innerWidth < 768);
-    checkMobile();
-    window.addEventListener('resize', checkMobile);
-    return () => window.removeEventListener('resize', checkMobile);
-  }, []);
+  // Unused UI states reserved for future features
+  // const [focusedBranch, setFocusedBranch] = useState(null);
+  // const [selectedNodes, setSelectedNodes] = useState(new Set());
+  // const [searchTerm, setSearchTerm] = useState('');
+  // Mobile detection not used yet; re-enable when needed
 
   // Initialize root goal from current project
   useEffect(() => {
@@ -596,7 +578,7 @@ export default function SuperintelligentPlatform() {
               </h3>
               <p className="text-sm leading-relaxed mb-6">
                 Enter your strategic goal above and watch as our AI creates a crystallized,
-                unique action plan tailored to your project's context and constraints.
+                unique action plan tailored to your project&#39;s context and constraints.
               </p>
               <div className="grid grid-cols-3 gap-4 text-xs">
                 <div className="bg-white/5 rounded-lg p-3">

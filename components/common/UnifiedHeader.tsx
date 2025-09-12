@@ -1,7 +1,7 @@
 'use client';
 
 import React from 'react';
-import { useRouter, usePathname } from 'next/navigation';
+import { useRouter } from 'next/navigation';
 import { Search, Bell, Settings } from 'lucide-react';
 
 interface UnifiedHeaderProps {
@@ -10,7 +10,6 @@ interface UnifiedHeaderProps {
 
 export default function UnifiedHeader({ showDashboardActions = false }: UnifiedHeaderProps) {
   const router = useRouter();
-  const pathname = usePathname();
 
   return (
     <header className="w-full bg-slate-950 border-b border-slate-800 px-6 py-4">

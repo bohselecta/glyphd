@@ -6,7 +6,6 @@ import { usePathname } from 'next/navigation';
 export default function Header() {
   const pathname = usePathname();
   const showLandingLogo = pathname === '/';
-  const hideLogoOnDashboard = pathname === '/dashboard';
 
   return (
     <header className="bg-black/30 backdrop-blur-lg border-b border-white/10 p-4">
